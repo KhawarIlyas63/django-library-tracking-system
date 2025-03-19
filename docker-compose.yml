@@ -40,6 +40,14 @@ services:
     depends_on:
       - web
       - redis
+  
+  celery-beat:
+    build: .
+    command: celery -A library_system worker -l info
+    depends_on:
+      - web
+      - redis
+      - celery
 
 volumes:
   postgres_data:
